@@ -48,16 +48,21 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         }
         else spot.setSpotType(SpotType.TWO_WHEELER);
 
-        ParkingLot parkingLot=parkingLotRepository1.findById(parkingLotId).get();
-        spot.setParkingLot(parkingLot);
+        try {
+            ParkingLot parkingLot=parkingLotRepository1.findById(parkingLotId).get();
+            spot.setParkingLot(parkingLot);
 
-        //bidirectional
-        parkingLot.getSpotList().add(spot);
+            //bidirectional
+            parkingLot.getSpotList().add(spot);
 
-        parkingLotRepository1.save(parkingLot);
+            parkingLotRepository1.save(parkingLot);
 
 
-        return spot;
+            return spot;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     @Override
