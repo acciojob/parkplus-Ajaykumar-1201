@@ -48,7 +48,7 @@ public class Payment {
         return paymentCompleted;
     }
 
-    public void setPaymentComplete(boolean paymentComplete) {
+    public void setPaymentCompleted(boolean paymentComplete) {
         this.paymentCompleted = paymentComplete;
     }
 
