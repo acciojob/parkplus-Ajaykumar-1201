@@ -19,6 +19,7 @@ public class Spot {
 
     private int pricePerHour;
 
+    @Column(columnDefinition = "TINYINT(1)")
     private boolean occupied;
 
     @JsonIgnore
@@ -80,7 +81,7 @@ public class Spot {
         this.pricePerHour = pricePerHour;
     }
 
-    public boolean isOccupied() {
+    public boolean getOccupied() {
         return occupied;
     }
 
