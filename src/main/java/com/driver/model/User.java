@@ -62,4 +62,11 @@ public class User {
         this.password = password;
     }
 
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
 }
