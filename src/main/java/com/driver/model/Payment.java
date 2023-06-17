@@ -22,6 +22,14 @@ public class Payment {
     public Payment() {
     }
 
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
     public Payment(int id, boolean paymentComplete, PaymentMode paymentMode) {
         this.id = id;
         this.paymentComplete = paymentComplete;
@@ -36,7 +44,7 @@ public class Payment {
         this.id = id;
     }
 
-    public boolean isPaymentComplete() {
+    public boolean getPaymentComplete() {
         return paymentComplete;
     }
 
