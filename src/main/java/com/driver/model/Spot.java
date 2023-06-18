@@ -1,54 +1,19 @@
 package com.driver.model;
 
-import net.minidev.json.annotate.JsonIgnore;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import org.hibernate.annotations.ManyToAny;import javax.persistence.*;import java.util.ArrayList;import java.util.List;
 
 @Entity
-@Table(name = "Spot")
-public class Spot {
-
+public class Spot
+{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Enumerated(value = EnumType.STRING)
     private SpotType spotType;
 
     private int pricePerHour;
 
-    @Column(columnDefinition = "TINYINT(1)")
     private boolean occupied;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn
-    private ParkingLot parkingLot;
-
-    public ParkingLot getParkingLot() {
-        return parkingLot;
-    }
-
-    public void setParkingLot(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
-    }
-
-    public List<Reservation> getReservationList() {
-        return reservationList;
-    }
-
-    public void setReservationList(List<Reservation> reservationList) {
-        this.reservationList = reservationList;
-    }
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "spot", cascade = CascadeType.ALL)
-    private List<Reservation> reservationList;
-
-    public Spot() {
-    }
 
     public Spot(int id, SpotType spotType, int pricePerHour, boolean occupied) {
         this.id = id;
@@ -56,6 +21,8 @@ public class Spot {
         this.pricePerHour = pricePerHour;
         this.occupied = occupied;
     }
+
+    public Spot() {}
 
     public int getId() {
         return id;
@@ -88,4 +55,31 @@ public class Spot {
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
+
+    @ManyToOne
+    @JoinColumn ParkingLot parkingLot;
+
+    @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
+    List<Reservation> reservationList=new ArrayList<>();
+
+
+
+
+
 }
